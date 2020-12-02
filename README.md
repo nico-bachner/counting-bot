@@ -3,8 +3,12 @@ Custom Discord Bot for experimentation, learning and fun.
 
 ## Features
 - Counting
-    - Countdown
     - Normal Counting
+    - Countdown
+    - Squares
+    - Cubes
+    - Factorials
+    - Fibonacci
 - Info
     - Server
     - User
