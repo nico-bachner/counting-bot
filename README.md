@@ -1,6 +1,14 @@
 # Dev Bot
-
 Custom Discord Bot for experimentation, learning and fun.
+
+## Features
+- Counting
+    - Countdown
+    - Normal Counting
+- Info
+    - Server
+    - User
+- Welcome message
 
 ## Hosting the bot
 The bot is currently not doing anything because it is not actively hosted.
