@@ -37,42 +37,103 @@ bot.on('message', message => {
 			message.react('😢');
 			break;
 		case 'count':
-			switch (args[0]) {
-				case 'from':
-					if (args[1] != undefined) {
-						if (args[1] <= 10 ) {
-							message.channel.send("I'm counting ...");
-							for ( var i = args[1] ; i > 0 ; i-- ) {
-								message.channel.send(i);
-							}
-							message.channel.send("Done");
+			if (args[0] == 'inline') {
+				switch (args[1]) {
+					case 'fibonacci':
+						if (args[2] != undefined ) {
+							terms = args[2];
 						}
 						else {
-							message.channel.send("Please refrain from spamming");
+							terms = 100;
 						}
-					} else {
-						message.channel.send("From what number would you like me to count down?");
-					}
-					break;
-				case 'to':
-					if (args[1] != undefined) {
-						if (args[1] <= 10 ) {
-							message.channel.send("I'm counting ...");
-							for ( var i = 1 ; i <= args[1] ; i++ ) {
-								message.channel.send(i);
+						fibonacci = [];
+						a = 0;
+						b = 1;
+						c = 1;
+						for ( var i = 0; i < terms ; i++ ) {
+							fibonacci.push("`"+c+"`");
+							c = a + b;
+							a = b;
+							b = c;
+						}
+						message.channel.send(fibonacci);
+						break;
+					case 'from':
+						if (args[2] != undefined) {
+							if (args[1] <= 500 ) {
+								count = []
+								for ( var i = args[2] ; i > 0 ; i-- ) {
+									count.push(i);
+								}
+								message.channel.send(count);
 							}
-							message.channel.send("Done");
+							else {
+								message.channel.send("That ain't gonna work");
+							}
+						} 
+						else {
+							message.channel.send("From what number would you like me to count down?");
+						}
+						break;
+					case 'to':
+						if (args[2] != undefined) {
+							if (args[1] <= 500 ) {
+								count = []
+								for ( var i = 1 ; i <= args[2] ; i++ ) {
+									count.push(i);
+								}
+								message.channel.send(count);
+							}
+							else {
+								message.channel.send("That ain't gonna work");
+							}
 						}
 						else {
-							message.channel.send("Please refrain from spamming");
+							message.channel.send("Until what number would you like me to count?");
 						}
-					}
-					else {
-						message.channel.send("Until what number would you like me to count?");
-					}
-					break;
-				default:
-					message.channel.send("How would you like me to count?"); 
+						break;
+					default:
+						message.channel.send("How would you like me to count?"); 
+				}
+			}
+			else {
+				switch (args[0]) {
+					case 'from':
+						if (args[1] != undefined) {
+							if (args[1] <= 10 ) {
+								message.channel.send("I'm counting ...");
+								for ( var i = args[1] ; i > 0 ; i-- ) {
+									message.channel.send(i);
+								}
+								message.channel.send("Done");
+							}
+							else {
+								message.channel.send("Please refrain from spamming");
+							}
+						} else {
+							message.channel.send("From what number would you like me to count down?");
+						}
+						break;
+					case 'to':
+						if (args[1] != undefined) {
+							if (args[1] <= 10 ) {
+								message.channel.send("I'm counting ...");
+								for ( var i = 1 ; i <= args[1] ; i++ ) {
+									message.channel.send(i);
+								}
+								message.channel.send("Done");
+							}
+							else {
+								message.channel.send("Please refrain from spamming");
+							}
+						}
+						else {
+							message.channel.send("Until what number would you like me to count?");
+						}
+						break;
+					default:
+						message.channel.send("How would you like me to count?"); 
+				}
 			}
 			break;
 		case 'welcome':
