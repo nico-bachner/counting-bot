@@ -41,6 +41,17 @@ bot.on('message', message => {
 			break;
 		case 'count':
 			switch (args[0]) {
+				case 'integer':
+					if (args[1] != undefined) {
+						for ( var i = 1 ; i <= args[1] ; i++ ) {
+							count = ("`"+i+"`");
+						}
+						message.channel.send(count);
+					} 
+					else {
+						message.channel.send("Which integer would you like me to find?");
+					}
+					break;
 				case 'to':
 				case 'integers':
 					if (args[1] == 'from') {
@@ -79,9 +90,8 @@ bot.on('message', message => {
 					break;
 				case 'square':
 					if (args[1] != undefined ) {
-						term = args[1];
 						a = 1;
-						for ( let i = 1; i <= term ; i++ ) {
+						for ( let i = 1; i <= args[1]; i++ ) {
 							b = a * a;
 							square = "`"+b+"`";
 							a++;
