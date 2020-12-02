@@ -41,38 +41,40 @@ bot.on('message', message => {
 			break;
 		case 'count':
 			switch (args[0]) {
-				case 'from':
-					if (args[1] != undefined) {
-						if (args[1] <= 500 ) {
-							count = []
-							for ( var i = args[1] ; i > 0 ; i-- ) {
-								count.push(i);
-							}
-							message.channel.send(count);
-						}
-						else {
-							message.channel.send("That ain't gonna work");
-						}
-					} 
-					else {
-						message.channel.send("From what number would you like me to count down?");
-					}
-					break;
 				case 'to':
-					if (args[1] != undefined) {
-						if (args[1] <= 500 ) {
-							count = []
-							for ( var i = 1 ; i <= args[1] ; i++ ) {
-								count.push(i);
+				case 'integers':
+					if (args[1] == 'from') {
+						if (args[1] != undefined) {
+							if (args[1] <= 500 ) {
+								count = []
+								for ( var i = args[1] ; i > 0 ; i-- ) {
+									count.push("`"+i+"`");
+								}
+								message.channel.send(count);
 							}
-							message.channel.send(count);
+							else {
+								message.channel.send("That ain't gonna work");
+							}
+						} 
+						else {
+							message.channel.send("From what number would you like me to count down?");
+						}
+					} else {
+						if (args[1] != undefined) {
+							if (args[1] <= 500 ) {
+								count = []
+								for ( var i = 1 ; i <= args[1] ; i++ ) {
+									count.push("`"+i+"`");
+								}
+								message.channel.send(count);
+							}
+							else {
+								message.channel.send("That ain't gonna work");
+							}
 						}
 						else {
-							message.channel.send("That ain't gonna work");
+							message.channel.send("Until what number would you like me to count?");
 						}
-					}
-					else {
-						message.channel.send("Until what number would you like me to count?");
 					}
 					break;
 				case 'squares':

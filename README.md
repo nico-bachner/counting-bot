@@ -3,12 +3,13 @@ Custom Discord Bot for experimentation, learning and fun.
 
 ## Features
 - Counting
-    - Normal Counting
-    - Countdown
-    - Squares
-    - Cubes
-    - Factorials
-    - Fibonacci
+    - Integers (`count integers [number]`)
+        - Regular (`count to [number]`)
+        - Countdown (`count integers from [number]`)
+    - Squares (`count squares [number]`)
+    - Cubes (`count cubes [number]`)
+    - Factorials (`count factorials [number]`)
+    - Fibonacci (`count fibonacci [number]`)
 - Info
     - Server
     - User
