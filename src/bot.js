@@ -42,6 +42,7 @@ bot.on('message', message => {
 		case 'count':
 			switch (args[0]) {
 				case 'to':
+				case 'naturals':	
 				case 'integers':
 					if (args[1] == 'from') {
 						if (args[2] != undefined) {
@@ -145,6 +146,50 @@ bot.on('message', message => {
 					}
 					message.channel.send(factorials);
 					break;
+				case 'triangulars':
+					if (args[1] != undefined ) {
+						terms = args[1];
+					}
+					else {
+						terms = 50;
+					}
+					triangulars = [];
+					a = 0;
+					for ( var i = 1; i <= terms ; i++ ) {
+						a += i;
+						triangulars.push("`"+a+"`"+""+`(${i})`);
+					}
+					message.channel.send(triangulars);
+					break;
+				case 'octagonals':
+					if (args[1] != undefined ) {
+						terms = args[1];
+					}
+					else {
+						terms = 50;
+					}
+					octagonals = [];
+					for ( var i = 1; i <= terms ; i++ ) {
+						j = ( 3 * i * i - 2 * i );
+						octagonals.push("`"+j+"`"+""+`(${i})`);
+					}
+					message.channel.send(octagonals);
+					break;
+				case 'stars':
+					if (args[1] != undefined ) {
+						terms = args[1];
+					}
+					else {
+						terms = 50;
+					}
+					stars = [];
+					j = 12;
+					for ( var i = 1; i <= terms ; i++ ) {
+						j = ( 6 * i * (i - 1) + 1 );
+						stars.push("`"+j+"`"+""+`(${i})`);
+					}
+					message.channel.send(stars);
+					break;
 				default:
 					if (args[0] != undefined) {
 						message.channel.send(`What are ${args[0]}?`); 
@@ -154,8 +199,10 @@ bot.on('message', message => {
 					}
 			}
 			break;
+		case 'calc':
 		case 'calculate':
 			switch (args[0]) {
+				case 'natural':
 				case 'integer':
 					if (args[1] != undefined) {
 						for ( var i = 1 ; i <= args[1] ; i++ ) {
