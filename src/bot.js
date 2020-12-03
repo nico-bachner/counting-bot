@@ -1,4 +1,4 @@
-const { roles, channels } = require('./config.json');
+const { roles, channels } = require('../config.json');
 
 // create a new Discord bot session
 const Discord = require('discord.js');
@@ -6,14 +6,14 @@ const bot = new Discord.Client();
 require('dotenv').config();
 bot.login(process.env.AUTH_TOKEN);
 
-// this event will only trigger once: on bot init
+// this event will only trigger once (on bot init)
 bot.on('ready', () => {
 	console.log('\x1b[32m%s\x1b[0m', "--- Bot online ---");
 	const args = process.argv.slice(2);
-	if (args[0] == "announce") {
+	if (!(args[0] == "--silent" || args[1] == "--silent")) {
 		bot.channels.cache.get(channels.bots).send("Hello there! I'm back online");
-	} else 
-	if (args[0] == "revive") {
+	} 
+	else if ((args[0] == "--revive" || args[1] == "--revive")) {
 		bot.channels.cache.get(channels.bots).send("Hello there! I have recovered from my mortal injury");
 	}
 });
@@ -41,17 +41,6 @@ bot.on('message', message => {
 			break;
 		case 'count':
 			switch (args[0]) {
-				case 'integer':
-					if (args[1] != undefined) {
-						for ( var i = 1 ; i <= args[1] ; i++ ) {
-							count = ("`"+i+"`");
-						}
-						message.channel.send(count);
-					} 
-					else {
-						message.channel.send("Which integer would you like me to find?");
-					}
-					break;
 				case 'to':
 				case 'integers':
 					if (args[1] == 'from') {
@@ -88,20 +77,6 @@ bot.on('message', message => {
 						}
 					}
 					break;
-				case 'square':
-					if (args[1] != undefined ) {
-						a = 1;
-						for ( let i = 1; i <= args[1]; i++ ) {
-							b = a * a;
-							square = "`"+b+"`";
-							a++;
-						}
-						message.channel.send(square);
-					}
-					else {
-						message.channel.send("Which square would you like me to find?");
-					}
-					break;
 				case 'squares':
 					if (args[1] != undefined ) {
 						terms = args[1];
@@ -118,21 +93,6 @@ bot.on('message', message => {
 					}
 					message.channel.send(squares);
 					break;
-				case 'cube':
-					if (args[1] != undefined ) {
-						term = args[1];
-						a = 1;
-						for ( let i = 1; i <= term ; i++ ) {
-							b = a * a * a;
-							cube = "`"+b+"`";
-							a++;
-						}
-						message.channel.send(cube);
-					}
-					else {
-						message.channel.send("Which cube would you like me to find?");
-					}
-					break;
 				case 'cubes':
 					if (args[1] != undefined ) {
 						terms = args[1];
@@ -148,24 +108,6 @@ bot.on('message', message => {
 						a++;
 					}
 					message.channel.send(cubes);
-					break;
-				case 'fibonacci':
-					if (args[1] != undefined ) {
-						term = args[1];
-						a = 0;
-						b = 1;
-						c = 1;
-						for ( var i = 1; i <= term ; i++ ) {
-							fibonacci = "`"+c+"`";
-							c = a + b;
-							a = b;
-							b = c;
-						}
-						message.channel.send(fibonacci);
-					}
-					else {
-						message.channel.send("Which term of the fibonacci sequence would you like me to find?");
-					}
 					break;
 				case 'fibonaccis':
 					if (args[1] != undefined ) {
@@ -185,22 +127,6 @@ bot.on('message', message => {
 						b = c;
 					}
 					message.channel.send(fibonaccis);
-					break;
-				case 'factorial':
-					if (args[1] != undefined ) {
-						term = args[1];
-						a = 1;
-						b = a;
-						for ( var i = 1; i <= term ; i++ ) {
-							b *= a;
-							factorial = "`"+b+"`";
-							a++;
-						}
-						message.channel.send(factorial);
-					}
-					else {
-						message.channel.send("Which factorial would you like me to find?");
-					}
 					break;
 				case 'factorials':
 					if (args[1] != undefined ) {
@@ -225,6 +151,83 @@ bot.on('message', message => {
 					}
 					else {
 						message.channel.send("How would you like me to count?"); 
+					}
+			}
+			break;
+		case 'calculate':
+			switch (args[0]) {
+				case 'integer':
+					if (args[1] != undefined) {
+						for ( var i = 1 ; i <= args[1] ; i++ ) {
+							count = ("`"+i+"`");
+						}
+						message.channel.send(count);
+					} 
+					else {
+						message.channel.send("Which integer would you like me to find?");
+					}
+					break;
+				case 'square':
+					if (args[1] != undefined ) {
+						a = 1;
+						for ( let i = 1; i <= args[1]; i++ ) {
+							b = a * a;
+							square = "`"+b+"`";
+							a++;
+						}
+						message.channel.send(square);
+					}
+					else {
+						message.channel.send("Which square would you like me to find?");
+					}
+					break;
+				case 'cube':
+					if (args[1] != undefined ) {
+						term = args[1];
+						a = 1;
+						for ( let i = 1; i <= term ; i++ ) {
+							b = a * a * a;
+							cube = "`"+b+"`";
+							a++;
+						}
+						message.channel.send(cube);
+					}
+					else {
+						message.channel.send("Which cube would you like me to find?");
+					}
+					break;
+				case 'fibonacci':
+					if (args[1] != undefined ) {
+						term = args[1];
+						a = 0;
+						b = 1;
+						c = 1;
+						for ( var i = 1; i <= term ; i++ ) {
+							fibonacci = "`"+c+"`";
+							c = a + b;
+							a = b;
+							b = c;
+						}
+						message.channel.send(fibonacci);
+					}
+					else {
+						message.channel.send("Which term of the fibonacci sequence would you like me to find?");
+					}
+					break;
+				case 'factorial':
+					if (args[1] != undefined ) {
+						term = args[1];
+						a = 1;
+						b = a;
+						for ( var i = 1; i <= term ; i++ ) {
+							b *= a;
+							factorial = "`"+b+"`";
+							a++;
+						}
+						message.channel.send(factorial);
+					}
+					else {
+						message.channel.send("The factorial of which integer would you like me to find?");
 					}
 			}
 			break;

@@ -1,15 +1,17 @@
 {
-  "name": "counting-bot",
+  "name": "dev-bot",
   "version": "0.0.1",
-  "description": "discord bot",
-  "main": "index.js",
+  "description": "experimental discord bot",
+  "main": "bot.js",
   "scripts": {
-    "start": "node bot.js"
+    "start": "node bot.js",
+    "bot": "node src/bot.js",
+    "interactive": "node src/interactive.js"
   },
   "author": "Nico Bachner",
   "license": "MIT",
   "dependencies": {
-    "discord.js": "^12.5.0",
+    "discord.js": "^12.5.1",
     "dotenv": "^8.2.0"
   }
 }
