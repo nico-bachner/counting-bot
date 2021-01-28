@@ -1,4 +1,4 @@
-# Dev Bot
+# Counting Bot
 Custom Discord Bot for experimentation, learning and fun.
 
 ## Features
